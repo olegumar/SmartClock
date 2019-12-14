@@ -8,7 +8,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Главная</title>
 <script type="text/javascript">
-    var mydata = JSON.parse(config);
+
     var IPaddress = "192.168.1.35";
     var pin1 = 0;
     var pin2 = 0;
@@ -17,22 +17,26 @@
 
    function set_pin1(submit){
 	if (pin1>=1){
-	document.getElementById("img1src").src= "http://"+IPaddress+"/1On";
+	server = "http://192.168.1.35/1On";
+	send_request(submit,server);
 	document.getElementById("img1src").style.background = "lime";
 	pin1--
 	} else {
-	document.getElementById("img1src").src= "http://"+IPaddress+"/1Off";
+	server = "http://192.168.1.35/1Off";
+	send_request(submit,server);
 	document.getElementById("img1src").style.background = "red";
 	pin1++
 	}
    }
    function set_pin2(submit){
 	if (pin2>=1){
-	document.getElementById("img2src").src= "http://"+IPaddress+"/2On";
+	server = "http://"+IPaddress+"/2On";
+	send_request(submit,server);
 	document.getElementById("img2src").style.background = "lime";
 	pin2--
 	} else {
-	document.getElementById("img2src").src= "http//"+IPaddress+"/2Off";
+	server = "http://"+IPaddress+"/2Off";
+	send_request(submit,server);
 	document.getElementById("img2src").style.background = "red";
 	pin2++
 	}
@@ -40,12 +44,12 @@
 
    function set_pin3(submit){
 	if (pin3>=1){
-	server = "http://"+IPaddress+"/1On";
+	server ="/addRele1On;
 	send_request(submit,server);
 	document.getElementById("img3src").style.background = "lime";
 	pin3--
 	} else {
-	server = "http://"+IPaddress+"/1Off";
+	server ="/addRele1Off;
 	send_request(submit,server);
 	document.getElementById("img3src").style.background = "red";
 	pin3++
@@ -53,12 +57,12 @@
    }
    function set_pin4(submit){
 	if (pin4>=1){
-	server = "http://"+IPaddress+"/2On";
+	server ="/addRele2On;
 	send_request(submit,server);
 	document.getElementById("img4src").style.background = "lime";
 	pin4--
 	} else {
-	server = "http://"+IPaddress+"/2Off";
+	server ="/addRele2Off;
 	send_request(submit,server);
 	document.getElementById("img4src").style.background = "red";
 	pin4++
@@ -66,12 +70,12 @@
    }
 
    function set_plus(submit){
-	server = "http://"+alert(mydata.ssidIPaddress)+"/2On";
+	server = "http://"+IPaddress+"/3On";
 	send_request(submit,server);
 	document.getElementById("vent").innerHTML = "Plus";
 	}
    function set_minus(submit){
-	server = "http://"+alert(mydata.ssidIPaddress)+"/2Off";
+	server = "http://"+IPaddress+"/3Off";
 	send_request(submit,server);
 	document.getElementById("vent").innerHTML = "Minus";
 	}
@@ -88,32 +92,32 @@
 <table border="0" width="100%" class="alert alert-dismissible alert-info">
 <tr class="alert alert-dismissible alert-warning"><th colspan = "3"></th></tr>
 <tr>
-  <td width=40%><img id="img1src" src="Light" height="10" width=100% style="background: lime">
-		<input type="submit" class="btn btn-block btn-default" value="Свет 1" onclick="set_pin1(this);">
+  <td width=40%><img id="img1src" src="" height="10" width=100% style="background: Yellow">
+		<input type="submit" class="btn btn-block btn-primary" value="Свет 1" onclick="set_pin1(this);">
   </td>
-  <td width=20%><img src="Light.png" height="25" width="25"></td>
-  <td width=40%><img id="img2src" src="Light" height="10"  width=100% style="background: lime">
+  <td width=20%><img src="./Light.png" height="25" width="25"></td>
+  <td width=40%><img id="img2src" src="" height="10"  width=100% style="background: Yellow">
 		<input type="submit" class="btn btn-block btn-primary" value="Свет 2" onclick="set_pin2(this);">
   </td>
 </tr>
 <tr class="alert alert-dismissible alert-warning"><th colspan = "3"></th></tr>
 <tr>
-  <td width=40%><img id="img3src" src="Light" height="10" width=100% style="background: Yellow">  
+  <td width=40%><img id="img3src" src="" height="10" width=100% style="background: Yellow">  
 		<input type="submit" class="btn btn-block btn-warning" value="Пин 1" onclick="set_pin3(this);">
   </td>
-  <td><img src="electric.png" height="25" width="25"></td>
-  <td width=40%><img id="img4src" src="Light" height="10" width=100% style="background: red">
-		<input type="submit" class="btn btn-block btn-danger" value="Пин 2" onclick="set_pin4(this);">
+  <td><img src="./electric.png" height="25" width="25"></td>
+  <td width=40%><img id="img4src" src="" height="10" width=100% style="background: Yellow">
+		<input type="submit" class="btn btn-block btn-warning" value="Пин 2" onclick="set_pin4(this);">
   </td>
 </tr>
 <tr class="alert alert-dismissible alert-warning"><th colspan = "3"></th></tr>
 <tr>
   <td width=40%>
-	<input type="submit" class="btn btn-block btn-success" value="Убавить" onclick="set_minus(this);">
+	<input type="submit" class="btn btn-success" value="Убавить" onclick="set_minus(this);">
   </td>
-  <td><p id="vent">число</p></td>
+  <td><p id="vent">{{phDHT}}</p></td>
   <td width=40%>
-	<input type="submit" class="btn btn-block btn-success" value="Добавить" onclick="set_plus(this);">
+	<input type="submit" class="btn btn-success" value="Добавить" onclick="set_plus(this);">
   </td>
 </tr>
 </table>
@@ -121,24 +125,24 @@
 <table border="0" width="100%" class="alert alert-info">
      	<caption><h4>Показания</h4></caption>
 <tr> 
-	<td>{{дом}} &#8451;</td>
-  <td><img src="thermo.png" height="25" width="25"></td>
+	<td>{{tmHaus}} &#8451;</td>
+  <td><img src="./thermo.png" height="25" width="25"></td>
 	<td>{{ули}}&#8451;</td>
 </tr> 
 <tr>
-	<td>{{дом}}%</td>
-  <td><img src="wetness.png" height="25" width="25"></td>
+	<td>{{phHaus}}%</td>
+  <td><img src="./wetness.png" height="25" width="25"></td>
 	<td>{{ули}}%</td>
 </tr>
 <tr>
-	<td>{{h}} HL</td>
-  <td><img src="candle.png" height="25" width="25"></td>
+	<td>{{ssHaus}} HL</td>
+  <td><img src="./candle.png" height="25" width="25"></td>
 	<td>{{p}} PH</td>
 </tr>
 </table>
     <hr>
-     <a class="btn btn-block btn-primary" href="./budil.htm">Установки</a>
-     <a class="btn btn-block btn-success" href="./setup.htm">Настройки</a>
+     <a class="btn btn-block btn-success" href="./budil.htm">Установки</a>
+     <a class="btn btn-block btn-danger" href="./setup.htm">Настройки</a>
      <a class="btn btn-block btn-default" href="./edit.htm">Открыть редактор</a>
     </div>
    </div>

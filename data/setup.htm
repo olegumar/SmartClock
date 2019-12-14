@@ -71,11 +71,9 @@
     <h4 style="margin-bottom:25px;">Настройки</h4>
     <div class="col-sm-offset-2 col-sm-8 col-md-offset-3 col-md-6">
      <h5 class="alert-info" id="ssdp_t">{{SSDP}}</h5>
-     <a class="btn btn-block btn-danger" href="./">Начальная страница</a>
-     <a class="btn btn-block btn-default" href="./edit">Открыть редактор</a>
+     <a class="btn btn-block btn-primary" href="./">Начальная страница</a>
      <hr>
      <div class="alert alert-dismissible alert-warning"><strong>Пожалуйста подключитесь к своему роутеру и укажите ниже вашу GMT зону.</strong></div>
-     <hr>
      <h3>Имя устройства</h3>
      <input id="ssdp" value="{{SSDP}}" class="form-control" pattern="[0-9a-zA-Zа-яА-Я. ]{1,20}" placeholder="Имя устройства">
      <input class="btn btn-block btn-success" value="Сохранить" onclick="set_ssdp(this);" type="submit">
@@ -110,7 +108,7 @@
        <input class="btn btn-block btn-success" value="Сохранить" onclick="set_ssid_ap(this);" type="submit">
       </div>
       <div class="col-sm-6">
-       <div class="alert alert-dismissible alert-warning">Здесь вы можете указать новое название WiFi жалюзи и пароль.</div>
+       <div class="alert alert-dismissible alert-warning">Здесь вы можете указать новое название WiFi и пароль.</div>
       </div>
      </div>
      <hr>
@@ -125,6 +123,7 @@
      </div>
      <hr>
      <input class="btn btn-block btn-warning" value="Перезагрузить устройство" onclick="restart(this,'Вы действительно хотите перезагрузить устройство?');" type="submit">
+     <a class="btn btn-block btn-default" href="./edit">Открыть редактор</a>
      <a class="btn btn-block btn-danger" href="./config.json">Посмотреть config.json</a>
     </div>
    </div>
