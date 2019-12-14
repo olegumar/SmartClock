@@ -5,7 +5,7 @@ bool loadConfig() {
   if (!configFile) {
   // если файл не найден 
     Serial.println("Failed to open config file");
-  // Создаем файл запиав в него аные по умолчанию
+  // Создаем файл запиав в него данные по умолчанию
     saveConfig();
     configFile.close();
     return false;
@@ -39,6 +39,10 @@ bool loadConfig() {
     _ip3 = root["ip3"];
     _ip4 = root["ip4"];
     _IPaddress = root["IPaddress"].as<String>();
+//    _ssHaus = root["ssHaus"];
+//    _tmHaus = root["tmHaus"];
+//    _phHaus = root["phHaus"];
+//    _phDHT = root["phDHT"];
     return true;
 }
 
@@ -61,6 +65,10 @@ bool saveConfig() {
   json["ip4"] = _ip4;
   json["timezone"] = timezone;
   json["IPaddress"] = _IPaddress;
+//  json["ssHaus"] = _ssHaus;
+//  json["tmHaus"] = _tmHaus;
+//  json["phHaus"] = _phHaus;
+//  json["phDHT"] = _phDHT;
   
   // Помещаем созданный json в глобальную переменную json.printTo(jsonConfig);
   json.printTo(jsonConfig);

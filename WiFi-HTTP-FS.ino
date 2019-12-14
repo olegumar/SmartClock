@@ -5,6 +5,7 @@
 #include <ArduinoJson.h>         //не выще версии 5
 #include <time.h>
 #include <ESP8266HTTPUpdateServer.h>
+#include <WebSocketsServer.h>
 
 // Web интерфейс для устройства
 ESP8266WebServer HTTP(80);
@@ -27,8 +28,18 @@ String _passwordAP = "";          // Пароль точки доступа
 String SSDP_Name = "Update-Time"; // Имя нашего устройства SSDP
 int timezone = 5;                 // Часовой пояс GTM
 String jsonConfig = "{}";
+int D0_pin = 0;               // Пины для реле 1
+int D2_pin = 2;               // Пины для реле 2
+int _ssHaus = 1;              // Для хранения освещения в доме
+int _tmHaus = 1;              // Для хранения температуры в доме
+int _phHaus = 1;              // Для хранения влажности в доме
+int _phDHT = 1;           // Для хранения установки влажности
 
 void setup() {
+  pinMode(D0_pin, OUTPUT);
+  digitalWrite(D0_pin, HIGH);
+  pinMode(D2_pin, OUTPUT);
+  digitalWrite(D2_pin, HIGH);
   // 
   Serial.begin(115200);
   // Запускаем файловую систему
