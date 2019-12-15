@@ -8,8 +8,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Главная</title>
 <script type="text/javascript">
-
-    var IPaddress = "192.168.1.35";
+     ajax.get('/config.setup.json',{},function(response) {
+      var jsonFiles = JSON.parse(response);
+      var IPaddress = jsonFiles['ip'];   
+     }
+    //var IPaddress = "192.168.1.35";
     var pin1 = 0;
     var pin2 = 0;
     var pin3 = 0;
@@ -17,12 +20,12 @@
 
    function set_pin1(submit){
 	if (pin1>=1){
-	server = "http://192.168.1.35/1On";
+	server = "http://"+IPaddress+"/1On";
 	send_request(submit,server);
 	document.getElementById("img1src").style.background = "lime";
 	pin1--
 	} else {
-	server = "http://192.168.1.35/1Off";
+	server = "http://"+IPaddress+"/1Off";
 	send_request(submit,server);
 	document.getElementById("img1src").style.background = "red";
 	pin1++
