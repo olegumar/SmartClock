@@ -5,14 +5,14 @@ bool loadConfig() {
   if (!configFile) {
   // если файл не найден 
     Serial.println("Failed to open config file");
-  // Создаем файл запиав в него данные по умолчанию
+  // Создаем файл запиcав в него данные по умолчанию
     saveConfig();
     configFile.close();
     return false;
   }
-  // Проверяем размер файла, будем использовать файл размером меньше 2048 байта
+  // Проверяем размер файла, будем использовать файл размером меньше 1024 байта
   size_t size = configFile.size();
-  if (size > 2048) {
+  if (size > 1024) {
     Serial.println("Config file size is too large");
     configFile.close();
     return false;
@@ -39,10 +39,6 @@ bool loadConfig() {
     _ip3 = root["ip3"];
     _ip4 = root["ip4"];
     _IPaddress = root["IPaddress"].as<String>();
-//    _ssHaus = root["ssHaus"];
-//    _tmHaus = root["tmHaus"];
-//    _phHaus = root["phHaus"];
-//    _phDHT = root["phDHT"];
     return true;
 }
 
@@ -64,11 +60,10 @@ bool saveConfig() {
   json["ip3"] = _ip3;
   json["ip4"] = _ip4;
   json["timezone"] = timezone;
+  json["time"] = _time;
+  json["date"] = _date;
   json["IPaddress"] = _IPaddress;
-//  json["ssHaus"] = _ssHaus;
-//  json["tmHaus"] = _tmHaus;
-//  json["phHaus"] = _phHaus;
-//  json["phDHT"] = _phDHT;
+  
   
   // Помещаем созданный json в глобальную переменную json.printTo(jsonConfig);
   json.printTo(jsonConfig);
